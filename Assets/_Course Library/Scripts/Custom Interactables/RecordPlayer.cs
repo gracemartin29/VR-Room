@@ -7,8 +7,10 @@ public class RecordPlayer : MonoBehaviour
 
     // var socketGO = socket game object
     public GameObject socket;
-    // var redRecordGO = record red game object
-    // var blueRecordGO = record blue game object
+     // var redRecordGO = record red game object
+    public GameObject redRecord;
+        // var blueRecordGO = record blue game object
+    public GameObject blueRecrod;
 
     // var currentRecord = record currently attached to socketGO
 
