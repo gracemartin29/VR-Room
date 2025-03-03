@@ -1,22 +1,26 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class RecordPlayer : MonoBehaviour
 {
-    public float rotationSpeed = 33.3f;
 
     // var socketGO = socket game object
     public GameObject socket;
-     // var redRecordGO = record red game object
+    // var redRecordGO = record red game object
     public GameObject redRecord;
-        // var blueRecordGO = record blue game object
-    public GameObject blueRecrod;
+    // var blueRecordGO = record blue game object
+    public GameObject blueRecord;
 
     // var currentRecord = record currently attached to socketGO
-
+    private GameObject currentRecord;
     // var socketAS = socket audio source
+    public AudioSource audioSource;
     // var redRecordAF = record red audio file
+    public AudioSource redAudio;
     // var blueRecordAF = record blue audio file
+    public AudioSource blueAudio;
 
     void Start()
     {
@@ -28,38 +32,41 @@ public class RecordPlayer : MonoBehaviour
 
     }
 
-// decides and plays audio
-    public void PlayRecord()
+    // decides and plays audio
+    public void PlayRecord(SelectEnterEventArgs args)
     {
+        currentRecord = //gameobject currently attached to the socket;
         // if (currentRecord = redRecordGO){
-        // socketAS = redRecordAF
+        if (currentRecord == redRecord)
+        {
+            // socketAS = redRecordAF
+            audioSource = redAudio;
+        }
         // } else if (currentRecord = blueRecordGO){
-        // socketAS = blueRecordAF
+        else if (currentRecord == blueRecord)
+        {
+            // socketAS = blueRecordAF
+            audioSource = blueAudio;
+        }
         // } else {
-        // socketAS = null
+        else
+        {
+            // socketAS = null
+            audioSource = null;
+        }
         // }
         // play_audio(socketAS)
+        audioSource.Play();
 
     }
 
-// stops audio
-    public void StopRecord()
+    // stops audio
+    public void StopRecord(SelectExitEventArgs args)
     {
         // stop_audio(socketAS)
+        audioSource.Stop();
         // socketAS = null
-    }
-
-// spinning record when playing
-    public void StartSpinObject()
-    {
-        // continously rotate on x-axis 
-        transform.Rotate(2*rotationSpeed*Time.deltaTime, 0, 0);
-    }
-
-    public void StopSpinObject()
-    {
-        // stop rotating
-        transform.Rotate(0,0,0);
+        audioSource = null;
     }
 
 }
