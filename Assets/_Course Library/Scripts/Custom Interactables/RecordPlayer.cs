@@ -35,7 +35,7 @@ public class RecordPlayer : MonoBehaviour
     // decides and plays audio
     public void PlayRecord(SelectEnterEventArgs args)
     {
-        currentRecord = //gameobject currently attached to the socket;
+        currentRecord = redRecord;//gameobject currently attached to the socket;
         // if (currentRecord = redRecordGO){
         if (currentRecord == redRecord)
         {
