@@ -2,12 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class RecordPlayer : MonoBehaviour
 {
 
     // var socketGO = socket game object
-    public GameObject socket;
+    XRSocketInteractor socket;    
     // var redRecordGO = record red game object
     public GameObject redRecord;
     // var blueRecordGO = record blue game object
@@ -24,7 +26,7 @@ public class RecordPlayer : MonoBehaviour
 
     void Start()
     {
-
+        socket = GetComponent<XRSocketInteractor>(); 
     }
 
     void Update()
@@ -35,15 +37,18 @@ public class RecordPlayer : MonoBehaviour
     // decides and plays audio
     public void PlayRecord(SelectEnterEventArgs args)
     {
-        currentRecord = redRecord;//gameobject currently attached to the socket;
+        // currentRecord = redRecord; // test
+        //gameobject currently attached to the socket;
+        IXRSelectInteractable currentRecord = socket.GetOldestInteractableSelected();
+        GameObject currentRecords = currentRecord.transform.gameObject;
         // if (currentRecord = redRecordGO){
-        if (currentRecord == redRecord)
+        if (currentRecords == redRecord)
         {
             // socketAS = redRecordAF
             audioSource = redAudio;
         }
         // } else if (currentRecord = blueRecordGO){
-        else if (currentRecord == blueRecord)
+        else if (currentRecords == blueRecord)
         {
             // socketAS = blueRecordAF
             audioSource = blueAudio;

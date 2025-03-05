@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1659044456784812392}
   m_Layer: 0
-  m_Name: Chest_Modern_Dark
+  m_Name: w
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
