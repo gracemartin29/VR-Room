@@ -39,16 +39,16 @@ public class RecordPlayer : MonoBehaviour
     {
         // currentRecord = redRecord; // test
         //gameobject currently attached to the socket;
-        IXRSelectInteractable currentRecord = socket.GetOldestInteractableSelected();
-        GameObject currentRecords = currentRecord.transform.gameObject;
+        IXRSelectInteractable selectedObject = socket.GetOldestInteractableSelected();
+        currentRecord = selectedObject.transform.gameObject;
         // if (currentRecord = redRecordGO){
-        if (currentRecords == redRecord)
+        if (currentRecord == redRecord)
         {
             // socketAS = redRecordAF
             audioSource = redAudio;
         }
         // } else if (currentRecord = blueRecordGO){
-        else if (currentRecords == blueRecord)
+        else if (currentRecord == blueRecord)
         {
             // socketAS = blueRecordAF
             audioSource = blueAudio;
