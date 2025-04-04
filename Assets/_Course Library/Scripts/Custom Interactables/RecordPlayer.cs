@@ -7,21 +7,15 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class RecordPlayer : MonoBehaviour
 {
-
-    // var socketGO = socket game object
+    // defining variables
     XRSocketInteractor socket;    
-    // var redRecordGO = record red game object
-    public GameObject redRecord;
-    // var blueRecordGO = record blue game object
-    public GameObject blueRecord;
 
-    // var currentRecord = record currently attached to socketGO
-    private GameObject currentRecord;
-    // var socketAS = socket audio source
+    public GameObject redVinyl;
+    public GameObject blueVinyl;
+    private GameObject currentVinyl;
+
     public AudioSource audioSource;
-    // var redRecordAF = record red audio file
     public AudioSource redAudio;
-    // var blueRecordAF = record blue audio file
     public AudioSource blueAudio;
 
     void Start()
@@ -33,44 +27,34 @@ public class RecordPlayer : MonoBehaviour
     {
 
     }
-
-    // decides and plays audio
-    public void PlayRecord(SelectEnterEventArgs args)
+    
+    // plays audio
+    public void PlayVinyl(SelectEnterEventArgs args)
     {
-        // currentRecord = redRecord; // test
-        //gameobject currently attached to the socket;
         IXRSelectInteractable selectedObject = socket.GetOldestInteractableSelected();
-        currentRecord = selectedObject.transform.gameObject;
-        // if (currentRecord = redRecordGO){
-        if (currentRecord == redRecord)
+        currentVinyl = selectedObject.transform.gameObject;
+
+        if (currentVinyl == redVinyl)
         {
-            // socketAS = redRecordAF
             audioSource = redAudio;
         }
-        // } else if (currentRecord = blueRecordGO){
-        else if (currentRecord == blueRecord)
+        else if (currentVinyl == blueVinyl)
         {
-            // socketAS = blueRecordAF
             audioSource = blueAudio;
         }
-        // } else {
         else
         {
-            // socketAS = null
             audioSource = null;
         }
-        // }
-        // play_audio(socketAS)
+        // play audio
         audioSource.Play();
 
     }
 
     // stops audio
-    public void StopRecord(SelectExitEventArgs args)
+    public void StopVinyl(SelectExitEventArgs args)
     {
-        // stop_audio(socketAS)
         audioSource.Stop();
-        // socketAS = null
         audioSource = null;
     }
 
